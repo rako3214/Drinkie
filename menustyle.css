@@ -1,0 +1,119 @@
+@font-face {
+    font-family: 'MalintonMedium';
+    src: url('fonts/MalintonTrialVersion-Medium.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'MalintonBlack';
+    src: url('fonts/MalintonTrialVersion-Black.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    color: #f7f1de;
+    background-color: #f7f1de;
+}
+
+body {
+    min-height: 100vh;
+    width: 100vw;
+    background-color: #f7f1de; 
+    overflow: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    padding-top: 121px; 
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: contain; /* Show all of the image, keep aspect ratio */
+    transition: background-image 0.5s ease; /* Smooth transition */
+}
+
+.top-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 80px; 
+    background: #558E62;
+    z-index: 10;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; 
+}
+
+div.scrollmenu {
+    background-color: #558E62;
+    overflow: auto;
+    white-space: nowrap;
+    scrollbar-width: none;
+    font-family: MalintonMedium, sans-serif;
+    scroll-behavior: smooth;
+}
+
+div.scrollmenu a {
+  display: inline-block;
+  background-color: #558E62;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+  opacity: 0.5; /* Lower opacity by default */
+  transition: opacity 0.3s, background 0.3s;
+}
+
+div.scrollmenu a:hover {
+  background-color: none;
+}
+
+div.scrollmenu a.active {
+  opacity: 1; /* Full opacity for active */
+  color: #fff;
+}
+
+.nav-gradient {
+    position: absolute;
+    top: 0;
+    width: 48px;
+    height: 80px;
+    pointer-events: none; 
+    z-index: 11;
+    border-radius: 7px; /* Add corner radius */
+    display: flex;
+    align-items: center; /* Vertically center content */
+    justify-content: center; /* Horizontally center content */
+}
+
+.nav-gradient-left {
+    left: 0;
+    background: linear-gradient(to right, #558E62, rgba(0,0,0,0));
+}
+
+.nav-gradient-right {
+    right: 0;
+    background: linear-gradient(to left, #558E62, rgba(0,0,0,0));
+}
+
+.menu-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  background: #f7f1de;   /* Add this line for all images */
+  border: none;
+  box-shadow: none;
+}
+section {
+  background: transparent !important;
+  margin: 0;
+  padding: 0;
+  border: none;
+  line-height: 0;      /* Add this */
+}
+
+

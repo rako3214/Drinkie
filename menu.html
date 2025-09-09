@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="menustyle.css">
+  <title>menu</title>
+  <style>
+    section {
+  background: #222; /* or any dark color */
+  /* ...other styles... */
+}
+  </style>
+</head>
+<body>
+
+ 
+  <nav class="top-navbar">
+     <div class="scrollmenu">
+    <a href="#Hot Coffee">Hot Coffee</a>
+    <a href="#Cold Drinks">Cold Drinks</a>
+    <a href="#Mojito">Mojito</a>
+    <a href="#Smoothie">Smoothie</a>
+    <a href="#Shake">Shake</a>
+    <a href="#Strawberry Fondue">Strawberry Fondue</a>
+    <a href="#Pastry & Sweet">Pastry & Sweet</a>
+    <a href="#Cold Sandwich">Cold Sandwich</a>
+    <a href="#Fresh Juice">Fresh Juice</a>
+    <a href="#Energy Drink">Energy Drink</a>
+    <a href="#Soft Drink">Soft Drink</a>
+  </div>
+  </nav>
+
+<section id="Hot Coffee">
+  <img src="img/Hot Drinks.svg" alt="Hot Drinks" class="menu-image">
+</section>
+<section id="Cold Drinks">
+  <img src="img/Cold Drinks.svg" alt="Cold Drinks" class="menu-image">
+</section>
+<section id="Mojito">
+  <img src="img/Mojito.svg" alt="Mojito" class="menu-image">
+</section>
+<section id="Smoothie">
+  <img src="img/Smoothies.svg" alt="Smoothies" class="menu-image">
+</section>
+<section id="Shake">
+  <img src="img/Shake.svg" alt="Shake" class="menu-image">
+</section>
+<section id="Strawberry Fondue">
+  <img src="img/StrawberryFondue.svg" alt="Strawberry Fondue" class="menu-image">
+</section>
+<section id="Pastry & Sweet">
+  <img src="img/PastryDessert.svg" alt="Pastry & Dessert" class="menu-image">
+</section>
+<section id="Cold Sandwich">
+  <img src="img/ColdSandwich.svg" alt="Cold Sandwich" class="menu-image">
+  </section>
+<section id="Fresh Juice">
+  <img src="img/Juice.svg" alt="Fresh Juice" class="menu-image">
+</section>
+<section id="Energy Drink">
+  <img src="img/Energy Drinks.svg" alt="Energy Drink" class="menu-image">
+</section>
+<section id="Soft Drink">
+  <img src="img/Soft Drinks.svg" alt="Soft Drink" class="menu-image">
+</section> 
+
+<!-- Powered by Rako & Nwar-->
+<script>
+  // Helper: Center the active nav item in the scrollmenu
+  function centerNavItem(link) {
+    const scrollmenu = document.querySelector('.scrollmenu');
+    const linkRect = link.getBoundingClientRect();
+    const menuRect = scrollmenu.getBoundingClientRect();
+    const scrollLeft = scrollmenu.scrollLeft;
+    const offset = linkRect.left - menuRect.left - (menuRect.width / 2) + (linkRect.width / 2);
+    scrollmenu.scrollTo({ left: scrollLeft + offset, behavior: 'smooth' });
+  }
+
+  // Highlight nav item and center it
+  function setActiveNav(sectionId) {
+    document.querySelectorAll('.scrollmenu a').forEach(link => {
+      if (link.getAttribute('href').substring(1) === sectionId) {
+        link.classList.add('active');
+        centerNavItem(link);
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  }
+
+  // On click: scroll to section, highlight, and center
+  document.querySelectorAll('.scrollmenu a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const sectionId = this.getAttribute('href').substring(1);
+      const section = document.getElementById(sectionId);
+      if(section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        setActiveNav(sectionId);
+      }
+    });
+  });
+
+  // On scroll: highlight the section in view
+  window.addEventListener('scroll', function() {
+    let currentSection = '';
+    document.querySelectorAll('section').forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if(rect.top <= 120 && rect.bottom > 120) { // 120px for navbar height
+        currentSection = section.id;
+      }
+    });
+    if(currentSection) setActiveNav(currentSection);
+  });
+
+  // Optional: Set initial active nav on page load
+  window.addEventListener('DOMContentLoaded', function() {
+    let currentSection = '';
+    document.querySelectorAll('section').forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if(rect.top <= 120 && rect.bottom > 120) {
+        currentSection = section.id;
+      }
+    });
+    if(currentSection) setActiveNav(currentSection);
+    else setActiveNav(document.querySelector('section').id);
+  });
+</script>
+</body>
+
+</html>
+
+

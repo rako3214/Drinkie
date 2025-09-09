@@ -53,6 +53,8 @@ div.scrollmenu {
     white-space: nowrap;
     font-family: MalintonMedium, sans-serif;
     scroll-behavior: smooth;
+    scrollbar-width: none;    /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
 }
 
 div.scrollmenu a {

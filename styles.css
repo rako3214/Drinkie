@@ -19,7 +19,6 @@ html, body {
 }
 
 body {
-    /* background-image: url('img/background.jpg'); */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -52,7 +51,7 @@ body {
     margin: 0;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25); 
     transition: background 0.2s;
-    z-index: 2; /* Ensure above overlay */
+    z-index: 2;
     
     
 }
@@ -117,5 +116,5 @@ body {
   object-fit: cover;
   z-index: 0;
   pointer-events: none;
-  filter: blur(10px); /* Add blur to the video */
+  filter: blur(10px);
 }

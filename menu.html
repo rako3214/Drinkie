@@ -60,7 +60,7 @@
 
   <!-- Powered by Rako & Nwar-->
   <script>
-    // Helper: Center the active nav item in the scrollmenu
+  
     function centerNavItem(link) {
       const scrollmenu = document.querySelector('.scrollmenu');
       const linkRect = link.getBoundingClientRect();
@@ -70,7 +70,7 @@
       scrollmenu.scrollTo({ left: scrollLeft + offset, behavior: 'smooth' });
     }
 
-    // Highlight nav item and center it
+    
     function setActiveNav(sectionId) {
       document.querySelectorAll('.scrollmenu a').forEach(link => {
         if (link.getAttribute('href').substring(1) === sectionId) {
@@ -82,7 +82,7 @@
       });
     }
 
-    // On click: scroll to section, highlight, and center
+    
     document.querySelectorAll('.scrollmenu a').forEach(link => {
       link.addEventListener('click', function(e) {
         e.preventDefault();
@@ -95,19 +95,19 @@
       });
     });
 
-    // On scroll: highlight the section in view
+    
     window.addEventListener('scroll', function() {
       let currentSection = '';
       document.querySelectorAll('section').forEach(section => {
         const rect = section.getBoundingClientRect();
-        if(rect.top <= 120 && rect.bottom > 120) { // 120px for navbar height
+        if(rect.top <= 120 && rect.bottom > 120) { 
           currentSection = section.id;
         }
       });
       if(currentSection) setActiveNav(currentSection);
     });
 
-    // Optional: Set initial active nav on page load
+    
     window.addEventListener('DOMContentLoaded', function() {
       let currentSection = '';
       document.querySelectorAll('section').forEach(section => {

@@ -16,7 +16,7 @@ html, body {
     margin: 0;
     padding: 0;
     background-color: #f7f1de;
-    overflow: hidden;         /* Hide both scrollbars */
+    overflow: hidden;
 }
 
 body {
@@ -25,12 +25,12 @@ body {
     background-color: #f7f1de;
     overflow: auto;
     padding-top: 80px;
-    scrollbar-width: none;    /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
 body::-webkit-scrollbar {
-    display: none;            /* Chrome, Safari, Opera */
+    display: none;            
 }
 
 .top-navbar {
@@ -53,8 +53,8 @@ div.scrollmenu {
     white-space: nowrap;
     font-family: MalintonMedium, sans-serif;
     scroll-behavior: smooth;
-    scrollbar-width: none;    /* Firefox */
-    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;   
+    -ms-overflow-style: none; 
 }
 
 div.scrollmenu a {

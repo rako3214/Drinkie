@@ -24,10 +24,10 @@
     </div>
   </nav>
 
-  <section id="HotCoffee">
+  <section id="Hot Coffee">
     <img src="img/HotDrinks.webp" alt="Hot Drinks" class="menu-image">
   </section>
-  <section id="ColdDrinks">
+  <section id="Cold Drinks">
     <img src="img/ColdDrinks.webp" alt="Cold Drinks" class="menu-image">
   </section>
   <section id="Mojito">
@@ -39,98 +39,83 @@
   <section id="Shake">
     <img src="img/Shake.webp" alt="Shake" class="menu-image">
   </section>
-  <section id="StrawberryFondue">
+  <section id="Strawberry Fondue">
     <img src="img/StrawberryFondue.webp" alt="Strawberry Fondue" class="menu-image">
   </section>
-  <section id="Pastry-Sweet">
+  <section id="Pastry & Sweet">
     <img src="img/PastryDessert.webp" alt="Pastry & Dessert" class="menu-image">
   </section>
-  <section id="ColdSandwich">
+  <section id="Cold Sandwich">
     <img src="img/ColdSandwich.webp" alt="Cold Sandwich" class="menu-image">
   </section>
-  <section id="FreshJuice">
+  <section id="Fresh Juice">
     <img src="img/Juice.webp" alt="Fresh Juice" class="menu-image">
   </section>
-  <section id="EnergyDrink">
+  <section id="Energy Drink">
     <img src="img/EnergyDrinks.webp" alt="Energy Drink" class="menu-image">
   </section>
-  <section id="SoftDrink">
+  <section id="Soft Drink">
     <img src="img/SoftDrinks.webp" alt="Soft Drink" class="menu-image">
   </section>
 
   <!-- Powered by Rako & Nwar-->
   <script>
-  
-  window.addEventListener('scroll', function() {
-    let currentSection = '';
-    document.querySelectorAll('section').forEach(section => {
-      const rect = section.getBoundingClientRect();
-      if(rect.top <= 120 && rect.bottom > 120) { // 120px for navbar height
-        currentSection = section.id;
+  function centerNavItem(link) {
+    const scrollmenu = document.querySelector('.scrollmenu');
+    const linkRect = link.getBoundingClientRect();
+    const menuRect = scrollmenu.getBoundingClientRect();
+    const scrollLeft = scrollmenu.scrollLeft;
+    const offset = linkRect.left - menuRect.left - (menuRect.width / 2) + (linkRect.width / 2);
+    scrollmenu.scrollTo({ left: scrollLeft + offset, behavior: 'smooth' });
+  }
+
+  function setActiveNav(sectionId) {
+    document.querySelectorAll('.scrollmenu a').forEach(link => {
+      if (link.getAttribute('href').substring(1) === sectionId) {
+        link.classList.add('active');
+        centerNavItem(link);
+      } else {
+        link.classList.remove('active');
       }
     });
-    if(currentSection) setActiveNav(currentSection);
+  }
+
+  document.querySelectorAll('.scrollmenu a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      const sectionId = this.getAttribute('href').substring(1);
+      const section = document.getElementById(sectionId);
+      if(section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+        setActiveNav(sectionId);
+      }
+    });
   });
 
+  // Intersection Observer for section highlighting
+  document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('section');
+    const options = {
+      root: null,
+      rootMargin: '-120px 0px 0px 0px', // Adjust for your navbar height
+      threshold: 0.5 // Section is at least 50% visible
+    };
 
-    function centerNavItem(link) {
-      const scrollmenu = document.querySelector('.scrollmenu');
-      const linkRect = link.getBoundingClientRect();
-      const menuRect = scrollmenu.getBoundingClientRect();
-      const scrollLeft = scrollmenu.scrollLeft;
-      const offset = linkRect.left - menuRect.left - (menuRect.width / 2) + (linkRect.width / 2);
-      scrollmenu.scrollTo({ left: scrollLeft + offset, behavior: 'smooth' });
-    }
+    let currentActive = null;
 
-    
-    function setActiveNav(sectionId) {
-      document.querySelectorAll('.scrollmenu a').forEach(link => {
-        if (link.getAttribute('href').substring(1) === sectionId) {
-          link.classList.add('active');
-          centerNavItem(link);
-        } else {
-          link.classList.remove('active');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          currentActive = entry.target.id;
+          setActiveNav(currentActive);
         }
       });
-    }
+    }, options);
 
-    
-    document.querySelectorAll('.scrollmenu a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const sectionId = this.getAttribute('href').substring(1);
-        const section = document.getElementById(sectionId);
-        if(section) {
-          section.scrollIntoView({ behavior: 'smooth' });
-          setActiveNav(sectionId);
-        }
-      });
+    sections.forEach(section => {
+      observer.observe(section);
     });
-
-    
-    window.addEventListener('scroll', function() {
-      let currentSection = '';
-      document.querySelectorAll('section').forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if(rect.top <= 120 && rect.bottom > 120) { 
-          currentSection = section.id;
-        }
-      });
-      if(currentSection) setActiveNav(currentSection);
-    });
-
-    
-    window.addEventListener('DOMContentLoaded', function() {
-      let currentSection = '';
-      document.querySelectorAll('section').forEach(section => {
-        const rect = section.getBoundingClientRect();
-        if(rect.top <= 120 && rect.bottom > 120) {
-          currentSection = section.id;
-        }
-      });
-      if(currentSection) setActiveNav(currentSection);
-      else setActiveNav(document.querySelector('section').id);
-    });
+  });
   </script>
 </body>
 </html>

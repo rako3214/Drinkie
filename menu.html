@@ -25,41 +25,53 @@
   </nav>
 
   <section id="Hot Coffee">
-    <img src="img/Hot Drinks.svg" alt="Hot Drinks" class="menu-image">
+    <img src="img/Hot Drinks.webp" alt="Hot Drinks" class="menu-image">
   </section>
   <section id="Cold Drinks">
-    <img src="img/Cold Drinks.svg" alt="Cold Drinks" class="menu-image">
+    <img src="img/Cold Drinks.webp" alt="Cold Drinks" class="menu-image">
   </section>
   <section id="Mojito">
-    <img src="img/Mojito.svg" alt="Mojito" class="menu-image">
+    <img src="img/Mojito.webp" alt="Mojito" class="menu-image">
   </section>
   <section id="Smoothie">
-    <img src="img/Smoothies.svg" alt="Smoothies" class="menu-image">
+    <img src="img/Smoothies.webp" alt="Smoothies" class="menu-image">
   </section>
   <section id="Shake">
-    <img src="img/Shake.svg" alt="Shake" class="menu-image">
+    <img src="img/Shake.webp" alt="Shake" class="menu-image">
   </section>
   <section id="Strawberry Fondue">
-    <img src="img/StrawberryFondue.svg" alt="Strawberry Fondue" class="menu-image">
+    <img src="img/StrawberryFondue.webp" alt="Strawberry Fondue" class="menu-image">
   </section>
   <section id="Pastry & Sweet">
-    <img src="img/PastryDessert.svg" alt="Pastry & Dessert" class="menu-image">
+    <img src="img/PastryDessert.webp" alt="Pastry & Dessert" class="menu-image">
   </section>
   <section id="Cold Sandwich">
-    <img src="img/ColdSandwich.svg" alt="Cold Sandwich" class="menu-image">
+    <img src="img/ColdSandwich.webp" alt="Cold Sandwich" class="menu-image">
   </section>
   <section id="Fresh Juice">
-    <img src="img/Juice.svg" alt="Fresh Juice" class="menu-image">
+    <img src="img/Juice.webp" alt="Fresh Juice" class="menu-image">
   </section>
   <section id="Energy Drink">
-    <img src="img/Energy Drinks.svg" alt="Energy Drink" class="menu-image">
+    <img src="img/Energy Drinks.webp" alt="Energy Drink" class="menu-image">
   </section>
   <section id="Soft Drink">
-    <img src="img/Soft Drinks.svg" alt="Soft Drink" class="menu-image">
+    <img src="img/Soft Drinks.webp" alt="Soft Drink" class="menu-image">
   </section>
 
   <!-- Powered by Rako & Nwar-->
   <script>
+  
+  window.addEventListener('scroll', function() {
+    let currentSection = '';
+    document.querySelectorAll('section').forEach(section => {
+      const rect = section.getBoundingClientRect();
+      if(rect.top <= 120 && rect.bottom > 120) { // 120px for navbar height
+        currentSection = section.id;
+      }
+    });
+    if(currentSection) setActiveNav(currentSection);
+  });
+
   
     function centerNavItem(link) {
       const scrollmenu = document.querySelector('.scrollmenu');

@@ -60,6 +60,9 @@
 
   <!-- Powered by Rako & Nwar-->
   <script>
+  let manualNavClick = false;
+  let manualNavTimeout;
+
   function centerNavItem(link) {
     const scrollmenu = document.querySelector('.scrollmenu');
     const linkRect = link.getBoundingClientRect();
@@ -88,6 +91,13 @@
       if(section) {
         section.scrollIntoView({ behavior: 'smooth' });
         setActiveNav(sectionId);
+
+        // Disable observer highlight for a short time after click
+        manualNavClick = true;
+        clearTimeout(manualNavTimeout);
+        manualNavTimeout = setTimeout(() => {
+          manualNavClick = false;
+        }, 1000); // 1 second, adjust if needed
       }
     });
   });
@@ -98,16 +108,14 @@
     const options = {
       root: null,
       rootMargin: '-120px 0px 0px 0px', // Adjust for your navbar height
-      threshold: 0.5 // Section is at least 50% visible
+      threshold: 0.1 // More responsive for small sections
     };
 
-    let currentActive = null;
-
     const observer = new IntersectionObserver((entries) => {
+      if (manualNavClick) return; // Don't auto-highlight if user just clicked nav
       entries.forEach(entry => {
         if(entry.isIntersecting) {
-          currentActive = entry.target.id;
-          setActiveNav(currentActive);
+          setActiveNav(entry.target.id);
         }
       });
     }, options);
